@@ -1,20 +1,22 @@
 
-# ModelSet Python library
+# ModelSet Python Library
 
 This is a library to easily integrate ModelSet with Python.
 
-## Install from sources
+## Install from Sources
+
+To install from sources, follow these steps:
 
 ```
 cd modelset-py
 python3 -m pip install .
 ```
 
-## Use without installing
+## Usage without installing
 
-This is useful is you are making changes you the source of the library
-while you use to to build some application. In this case, you can
-do the following:
+This option is useful if you are making changes to the source code of the library while you build an application. 
+
+In this case, you can do the following:
 
 ```
 sys.path.append("/path/to/modelset-py/src")
