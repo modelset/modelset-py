@@ -11,11 +11,12 @@ from nltk.corpus import stopwords
 import nltk
 
 class Dataset:
-    def __init__(self, root_folder, db_filename, repo_folder, modeltype, analysis):
+    def __init__(self, root_folder, db_filename, repo_folder, txt_files, modeltype, analysis):
         self.root_folder = root_folder
         self.db_filename = db_filename
         self.modeltype = modeltype
         self.repo_folder = repo_folder
+        self.txt_files = txt_files
         self.models = []
         self.selected_analysis = analysis.copy()
     
@@ -67,8 +68,7 @@ class Dataset:
     def txt_file(self, model_id):
         # Assume that modelset uses filenames as ids
         f = model_id
-        # Assume that txt files are stored in this location
-        prefix = self.root_folder + '/txt/'
+        prefix = self.txt_files + '/'
         
         name = os.path.basename(f)
         name = os.path.splitext(name)[0]
@@ -155,11 +155,13 @@ def load(root_folder, modeltype = 'ecore', selected_analysis = []):
     if modeltype == 'ecore':
         file = root_folder + '/datasets/dataset.ecore/data/ecore.db'
         analysis = root_folder + '/datasets/dataset.ecore/data/analysis.db'
-        repo = root_folder + '/models/repo-ecore-all'
+        repo = root_folder + '/raw-data/repo-ecore-all'
+        txt_files = root_folder + '/txt/repo-ecore-all'
     elif modeltype == 'uml':
         file = root_folder + '/datasets/dataset.genmymodel/genmymodel.db'
         analysis = root_folder + '/datasets/dataset.genmymodel/analysis.db'
-        repo = root_folder + '/models/repo-genmymodel-uml'
+        repo = root_folder + '/raw-data/repo-genmymodel-uml'
+        txt_files = root_folder + '/txt/repo-genmymodel-uml'        
     else:
         raise Exception('Dataset type ' + modeltype + ' not supported')
     
@@ -169,7 +171,7 @@ def load(root_folder, modeltype = 'ecore', selected_analysis = []):
     cur_analysis = conn_analysis.cursor()
     
     fetchall = cur.execute('select mo.id, mo.filename, mm.metadata from models mo join metadata mm on mo.id = mm.id');
-    dataset = Dataset(root_folder, file, repo, modeltype, selected_analysis)
+    dataset = Dataset(root_folder, file, repo, txt_files, modeltype, selected_analysis)
     for m in fetchall:
         id = m[0]
         model = Model(id, m[1], dataset, split_metadata(m[2]))
