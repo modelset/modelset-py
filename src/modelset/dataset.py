@@ -66,8 +66,7 @@ class Dataset:
         return df
     
     def txt_file(self, model_id):
-        # Assume that modelset uses filenames as ids
-        f = model_id
+        f = self.get_model_by_id(model_id).filename
         prefix = self.txt_files + '/'
         
         name = os.path.basename(f)
@@ -79,15 +78,22 @@ class Dataset:
         with open(f, 'r') as file:
             return file.read()
 
+    def get_model_by_id(self, id):
+        for m in self.models:
+            if m.id == id:
+                return m
+        raise Exception("Model not found: " + id)
+        
     def model_file(self, model):
         """
-        Returns the file name of the model associated to the given id
+        Returns the file name of the model associated to the given id or model object
         """
         if isinstance(model, Model):
             return os.path.join(self.repo_folder, model.filename)
         else:
-            raise Exception("TODO: Search for the model with the given id")
-    
+            m = self.get_model_by_id(model)
+            return self.model_file(m)
+            
     @staticmethod
     def remove_from_list(l, value):
         try:
