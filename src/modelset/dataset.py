@@ -164,7 +164,7 @@ def load(root_folder, modeltype = 'ecore', selected_analysis = []):
         repo = root_folder + '/raw-data/repo-ecore-all'
         txt_files = root_folder + '/txt/repo-ecore-all'
     elif modeltype == 'uml':
-        file = root_folder + '/datasets/dataset.genmymodel/genmymodel.db'
+        file = root_folder + '/datasets/dataset.genmymodel/data/genmymodel.db'
         analysis = root_folder + '/datasets/dataset.genmymodel/analysis.db'
         repo = root_folder + '/raw-data/repo-genmymodel-uml'
         txt_files = root_folder + '/txt/repo-genmymodel-uml'        
