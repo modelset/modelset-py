@@ -6,6 +6,8 @@ from collections import defaultdict
 import pandas as pd
 from networkx.readwrite import json_graph
 
+from modelset.downloader import DEFAULT_DIR_MODELSET
+
 
 class Dataset:
     def __init__(self, root_folder, db_filename, dataset_name, modeltype, analysis):
@@ -149,7 +151,7 @@ def split_metadata(str):
     return labels
 
 
-def load(root_folder, modeltype='ecore', selected_analysis=[]):
+def load(root_folder=DEFAULT_DIR_MODELSET, modeltype='ecore', selected_analysis=[]):
     """Loads the dataset from the provided folder. 
     Parameters
     ----------   

@@ -9,6 +9,7 @@ Simply:
 
 ```
 pip install modelset-py
+python -m modelset.downloader
 ```
 
 ## Install from Sources
@@ -17,7 +18,8 @@ To install from sources, follow these steps:
 
 ```
 cd modelset-py
-python3 -m pip install .
+python -m pip install .
+python -m modelset.downloader
 ```
 
 ## Usage without installing
@@ -25,6 +27,10 @@ python3 -m pip install .
 This option is useful if you are making changes to the source code of the library while you build an application. 
 
 In this case, you can do the following:
+
+```
+python src/modelset/downloader.py
+```
 
 ```
 sys.path.append("/path/to/modelset-py/src")
