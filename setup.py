@@ -25,6 +25,7 @@ setuptools.setup(
     python_requires=">=3.0",
     install_requires=[
         "pandas",
-        "networkx"
+        "networkx",
+        "wget"
     ]
 )
