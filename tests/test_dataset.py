@@ -1,7 +1,7 @@
 import sys
 import unittest
 
-sys.path.append("../modelset-py/src")
+sys.path.append("./src")
 
 
 class DatasetTestCase(unittest.TestCase):
@@ -18,6 +18,19 @@ class DatasetTestCase(unittest.TestCase):
         print(load.__doc__)
         print(Dataset.__doc__)
         print(Model.__doc__)
+
+    def test_uml(self):
+        from modelset import load
+        dataset = load(modeltype='uml', selected_analysis=['stats'])
+        dataset_normalized_df = dataset.to_normalized_df()
+        print(dataset_normalized_df.describe())
+
+    def test_ecore(self):
+        from modelset import load
+        dataset = load(modeltype='ecore', selected_analysis=['stats'])
+        dataset_df = dataset.to_df()
+        dataset_df = dataset_df[dataset_df.tags.notnull()]
+        print(dataset_df['tags'])
 
 
 if __name__ == '__main__':
