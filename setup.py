@@ -26,6 +26,8 @@ setuptools.setup(
     install_requires=[
         "pandas",
         "networkx",
-        "wget"
+        "wget",
+        "scikit-learn",
+        "numpy"
     ]
 )
