@@ -29,12 +29,13 @@ This option is useful if you are making changes to the source code of the librar
 In this case, you can do the following:
 
 ```
+pip install -r requirements.txt
 python src/modelset/downloader.py
 ```
 
 ```
 sys.path.append("/path/to/modelset-py/src")
-import modelset.dataset as ds
+from modelset import load
 ```
 
 ### Examples
