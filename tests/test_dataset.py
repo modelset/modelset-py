@@ -7,7 +7,7 @@ sys.path.append("./src")
 class DatasetTestCase(unittest.TestCase):
     """
     Tests of modelset-py. Before running these tests, the ModelSet dataset has to be in your computer i.e.,
-    you should have executed 'python -m modelset.downloader' or 'python src/modelset/downloader.py'.
+    you should have executed 'python -m modelset.downloader' or 'python src/modelset/downloader.py'. Alternatively, it is possible to copy the source of the dataset (see sub-project modelset-dataset) in ~/.modelset directly.
     """
     def test_graph(self):
         from modelset import load
