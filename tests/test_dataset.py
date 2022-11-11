@@ -5,6 +5,10 @@ sys.path.append("./src")
 
 
 class DatasetTestCase(unittest.TestCase):
+    """
+    Tests of modelset-py. Before running these tests, the ModelSet dataset has to be in your computer i.e.,
+    you should have executed 'python -m modelset.downloader' or 'python src/modelset/downloader.py'.
+    """
     def test_graph(self):
         from modelset import load
         dataset = load(modeltype='ecore', selected_analysis=['stats'])

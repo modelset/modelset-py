@@ -3,7 +3,7 @@
 
 This is a library to easily integrate ModelSet with Python.
 
-## Install
+## Install from pip
 
 Simply:
 
@@ -33,9 +33,20 @@ pip install -r requirements.txt
 python src/modelset/downloader.py
 ```
 
+To import the library, you have to place this in your Python script:
+
 ```
 sys.path.append("/path/to/modelset-py/src")
 from modelset import load
+```
+
+## Running the tests
+
+To be able to execute the tests placed in the `tests` folder, the dataset has to be in you computer (i.e., 
+you should have executed either `python -m modelset.downloader` or `python src/modelset/downloader.py`).
+
+```
+python -m unittest discover
 ```
 
 ### Examples
