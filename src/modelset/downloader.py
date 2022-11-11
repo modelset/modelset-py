@@ -5,7 +5,7 @@ from argparse import ArgumentParser
 import wget
 
 URL_ZIP_MODELSET = 'https://github.com/modelset/modelset-dataset/releases/download/v0.9.3/modelset.zip'
-DEFAULT_DIR_MODELSET = os.path.join(os.path.expanduser('~'), 'modelset')
+DEFAULT_DIR_MODELSET = os.path.join(os.path.expanduser('~'), '.modelset')
 
 
 def main(args):
