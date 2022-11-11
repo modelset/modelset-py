@@ -5,7 +5,7 @@ with open("README.md", "r", encoding="utf-8") as fh:
 
 setuptools.setup(
     name="modelset-py",
-    version="0.1.3",
+    version="0.2.0",
     author="Jesús Sánchez Cuadrado",
     author_email="jesusc@um.es",
     description="A libray to handle the ModelSet dataset of software models",
