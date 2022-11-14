@@ -31,7 +31,7 @@ class DatasetTestCase(unittest.TestCase):
         print(dataset_normalized_df.describe())
 
     def test_ecore(self):
-        dataset_df = dataset_ecore.to_df()
+        dataset_df = dataset_ecore.to_normalized_df()
         dataset_df = dataset_df[dataset_df.tags.notnull()]
         print(dataset_df['tags'])
 
@@ -40,6 +40,9 @@ class DatasetTestCase(unittest.TestCase):
         print(f'Representatives ecore: {len(duplication_ecore)}')
         duplication_uml = dataset_uml.get_duplicates()
         print(f'Representatives uml: {len(duplication_uml)}')
+        dataset_normalized_df_ecore = dataset_ecore.to_normalized_df(remove_duplicates=True)
+        print(f'Representatives ecore: {len(dataset_normalized_df_ecore)}')
+        print(dataset_normalized_df_ecore.head(10))
 
 
 if __name__ == '__main__':

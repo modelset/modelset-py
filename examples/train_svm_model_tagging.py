@@ -15,7 +15,7 @@ from modelset import load
 def main(args):
     # load dataset and generate dataframe
     dataset = load(modeltype=args.model_type, selected_analysis=[])
-    modelset_df = dataset.to_df()
+    modelset_df = dataset.to_normalized_df()
     modelset_df = modelset_df[modelset_df.tags.notnull()]
 
     # get ids and tags

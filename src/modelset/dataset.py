@@ -37,7 +37,7 @@ class Dataset:
         """
         self.models.append(model)
 
-    def to_df(self):
+    def __to_df(self):
         """Dumps the dataset object to a pandas dataframe
 
         Returns
@@ -71,8 +71,13 @@ class Dataset:
         df = df[~df['category'].isna()]
         return df
 
-    def to_normalized_df(self, min_occurrences_per_category=7, languages=['english'],
-                         remove_categories=['dummy', 'unknown']):
+    def to_normalized_df(self,
+                         min_occurrences_per_category=7,
+                         languages=['english'],
+                         remove_categories=['dummy', 'unknown'],
+                         remove_duplicates=False,
+                         t0=0.8,
+                         t1=0.7):
         """Dumps the dataset object to a pandas dataframe and filters according to min_occurrences_per_category,
         languages, and specific categories.
 
@@ -84,19 +89,27 @@ class Dataset:
             List of languages to consider
         remove_categories: list
             List of categories to remove
+        remove_duplicates: bool
+            Remove duplicates
+        t0 : float
+            Threshold for the set of identifiers
+        t1 : float
+            Threshold for the multiset of identifiers
 
         Returns
         -------
         DataFrame
             a pandas dataframe
         """
-        df = self.to_df()
+        df = self.__to_df()
+        if remove_duplicates:
+            duplication = self.get_duplicates(t0, t1)
+            representatives = duplication.keys()
+            df = df[df['id'].isin(representatives)]
         df = df[df['language'].isin(languages)]
         counts = df.groupby(['category'], as_index=False).count()
         categories = list(counts[counts['id'] >= min_occurrences_per_category]['category'])
-
-        for r in remove_categories:
-            Dataset.remove_from_list(categories, r)
+        categories = [c for c in categories if c not in remove_categories]
 
         df = df[df['category'].isin(categories)]
         return df
@@ -231,13 +244,6 @@ class Dataset:
         corpus = [self.as_txt(i) for i in ids]
         corpus_multiset = [get_multiset(tokenizer(doc)) for doc in corpus]
         return get_duplicates(corpus_multiset, ids, t0, t1)
-
-    @staticmethod
-    def remove_from_list(l, value):
-        try:
-            l.remove(value)
-        except:
-            pass
 
 
 class Model:
