@@ -38,7 +38,7 @@ class DatasetTestCase(unittest.TestCase):
     def test_duplication(self):
         duplication_ecore = dataset_ecore.get_duplicates()
         print(f'Representatives ecore: {len(duplication_ecore)}')
-        duplication_uml = dataset_ecore.get_duplicates()
+        duplication_uml = dataset_uml.get_duplicates()
         print(f'Representatives uml: {len(duplication_uml)}')
 
 
