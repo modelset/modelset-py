@@ -6,6 +6,7 @@ from collections import defaultdict
 import pandas as pd
 from networkx.readwrite import json_graph
 
+from modelset.deduplication import get_multiset, tokenizer, get_duplicates
 from modelset.downloader import DEFAULT_DIR_MODELSET
 
 
@@ -13,6 +14,7 @@ class Dataset:
     """
     Class that represents ModelSet dataset.
     """
+
     def __init__(self, root_folder, db_filename, dataset_name, modeltype, analysis):
         self.root_folder = root_folder
         self.db_filename = db_filename
@@ -211,6 +213,25 @@ class Dataset:
             m = self.get_model_by_id(model)
             return self.model_file(m)
 
+    def get_duplicates(self, t0=0.8, t1=0.7):
+        """Returns a dict with duplicates ids
+
+        Parameters
+        ----------
+        t0 : float
+            Threshold for the set of identifiers
+        t1 : float
+            Threshold for the multiset of identifiers
+        Returns
+        -------
+        dict
+            A dict whose keys are the representatives and the values are the lists of duplicates
+        """
+        ids = [m.id for m in self.models]
+        corpus = [self.as_txt(i) for i in ids]
+        corpus_multiset = [get_multiset(tokenizer(doc)) for doc in corpus]
+        return get_duplicates(corpus_multiset, ids, t0, t1)
+
     @staticmethod
     def remove_from_list(l, value):
         try:
@@ -224,6 +245,7 @@ class Model:
     Class that represents a model of the dataset.
     It is composed of the id, model filename, dataset and metadata.
     """
+
     def __init__(self, id, filename, dataset, metadata):
         self.id = id
         self.filename = filename
