@@ -13,6 +13,7 @@ class TestW2V(unittest.TestCase):
                      'father', 'name', 'epsilon',
                      'graph', 'classroom', 'transformation']:
             print(f'Most similar {word}: {vectors.most_similar(positive=[word])}')
+            print(f'Vocab size: f{len(vectors.key_to_index)}')
 
 
 if __name__ == '__main__':
