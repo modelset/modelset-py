@@ -29,6 +29,7 @@ setuptools.setup(
         "wget",
         "scikit-learn",
         "numpy",
-        "tqdm"
+        "tqdm",
+        "gensim==4.2.0"
     ]
 )
