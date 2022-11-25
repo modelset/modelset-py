@@ -1,5 +1,6 @@
 import os
 import shutil
+import sys
 import tempfile
 from argparse import ArgumentParser
 
@@ -24,8 +25,14 @@ def download_word2vec(args):
 
 
 def main(args):
-    download_modelset(args)
-    download_word2vec(args)
+    try:
+        download_modelset(args)
+    except:
+        print('Cannot download ModelSet', file=sys.stderr)
+    try:
+        download_word2vec(args)
+    except:
+        print('Cannot download Word2vec4MDE', file=sys.stderr)
 
 
 if __name__ == "__main__":
