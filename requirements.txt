@@ -3,3 +3,4 @@ networkx
 wget
 scikit-learn
 numpy
+tqdm

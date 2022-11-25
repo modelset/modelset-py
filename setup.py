@@ -28,6 +28,7 @@ setuptools.setup(
         "networkx",
         "wget",
         "scikit-learn",
-        "numpy"
+        "numpy",
+        "tqdm"
     ]
 )
