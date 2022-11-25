@@ -4,3 +4,4 @@ wget
 scikit-learn
 numpy
 tqdm
+gensim==4.2.0
