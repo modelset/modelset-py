@@ -1,3 +1,6 @@
+"""
+This module exports the function in charge of loading Word2Vec4MDE word embeddings.
+"""
 import os
 
 from gensim.models import KeyedVectors

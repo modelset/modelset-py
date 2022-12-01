@@ -1,3 +1,7 @@
+"""
+This module is in charge of enabling the deduplication functionality of ModelSet.
+See method get_duplicates of the Dataset class in dataset.py.
+"""
 from collections import defaultdict
 from re import finditer
 

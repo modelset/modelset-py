@@ -1,3 +1,7 @@
+"""
+This module contains an executable main procedure and is in charge of downloading ModelSet dataset from GitHub and
+other components (currently Word2Vec4MDE)
+"""
 import os
 import shutil
 import sys

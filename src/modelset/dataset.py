@@ -1,3 +1,6 @@
+"""
+This module contains the main functionality of modelset-py: load function and Dataset class.
+"""
 import json
 import os
 import sqlite3
