@@ -1,5 +1,5 @@
 """
-This module exports the function in charge of loading Word2Vec4MDE word embeddings.
+This module exports the function in charge of loading Word2Vec4MDE word embeddings. This word embeddings needs to be loaded with gensim and can be used to enhance ML models. 
 """
 import os
 
