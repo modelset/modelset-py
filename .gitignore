@@ -128,3 +128,5 @@ dmypy.json
 
 # modelset test
 modelset
+/ecore.jsonl
+/uml.jsonl

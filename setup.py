@@ -30,6 +30,7 @@ setuptools.setup(
         "scikit-learn",
         "numpy",
         "tqdm",
-        "gensim==4.2.0"
+        "gensim==4.2.0",
+        "datasets"
     ]
 )
